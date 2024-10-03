@@ -5,9 +5,12 @@
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
     "whereis htop": {
-      "name": "whereis htop",
+      "name": "Swoole server",
       "command": "php index.php",
-      "runAtStart": true
+      "runAtStart": true,
+      "preview": {
+        "port": 9501
+      }
     }
   }
 }
