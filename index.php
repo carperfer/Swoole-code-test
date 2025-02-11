@@ -6,8 +6,8 @@ $http->on('start', function ($server) {
 });
 
 $http->on('request', function ($request, $response) {
-    $response->header('Content-Type', 'text/plain');
-    $response->end('Hello World');
+    $response->header('Content-Type', 'text/html');
+    $response->end('Hello Swoole World');
 });
 
 $http->start();
