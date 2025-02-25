@@ -20,4 +20,5 @@ RUN touch /usr/local/etc/php/conf.d/swoole.ini && \
 
 RUN apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/usr/local/bin/dumb-init", "--", "php"]
+ENTRYPOINT ["php", "index.php"]
+# ENTRYPOINT ["/usr/local/bin/dumb-init", "--", "php"]
