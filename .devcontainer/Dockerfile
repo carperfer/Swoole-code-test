@@ -1,33 +1,24 @@
-FROM php:8.2-fpm
+FROM php:7.4.2-cli
 
-# Instalar dependencias de sistema y herramientas
-RUN apt-get update && apt-get install -y \
-    nginx supervisor git unzip libcurl4-openssl-dev pkg-config libssl-dev libpcre3-dev zlib1g-dev && \
-    apt-get clean
+RUN apt-get update && apt-get install vim -y && \
+    apt-get install openssl -y && \
+    apt-get install libssl-dev -y && \
+    apt-get install wget -y && \
+    apt-get install git -y && \
+    apt-get install procps -y && \
+    apt-get install htop -y
 
-# Instalar extensiones necesarias
-RUN docker-php-ext-install pdo pdo_mysql
+RUN cd /tmp && git clone https://github.com/swoole/swoole-src.git && \
+    cd swoole-src && \
+    git checkout v4.5.2 && \
+    phpize  && \
+    ./configure  --enable-openssl && \
+    make && make install
 
-# Instalar Swoole (vía PECL)
-RUN pecl install swoole && docker-php-ext-enable swoole
+RUN touch /usr/local/etc/php/conf.d/swoole.ini && \
+    echo 'extension=swoole.so' > /usr/local/etc/php/conf.d/swoole.ini
 
-# Crear carpetas para las apps
-RUN mkdir -p /var/www/app /var/www/api
+RUN apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
-# Copiar código de las apps (los proveerás tú)
-COPY ./app /var/www/app
-COPY ./api /var/www/api
-
-# Copiar config NGINX y Supervisor
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY supervisord.conf /etc/supervisor/supervisord.conf
-
-# Copiar servidor swoole (lo vamos a crear ahora)
-COPY app_server.php /var/www/app/server.php
-
-# Configurar permisos
-RUN chown -R www-data:www-data /var/www
-
-EXPOSE 80
-
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+ENTRYPOINT ["php", "index.php"]
+# ENTRYPOINT ["/usr/local/bin/dumb-init", "--", "php"]
