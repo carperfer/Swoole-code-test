@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Lanza Swoole
-php ./swoole/index.php &
-
 # Lanzar PHP-FPM
 php-fpm &
 
