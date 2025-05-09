@@ -42,4 +42,4 @@ EXPOSE 80
 
 # ENTRYPOINT ["php", "index.php"]
 # ENTRYPOINT ["/usr/local/bin/dumb-init", "--", "php"]
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["sh", "start.sh"]

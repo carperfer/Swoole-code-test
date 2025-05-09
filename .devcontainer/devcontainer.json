@@ -1,25 +1,13 @@
 {
   "name": "Nginx + PHP-FPM + Swoole DevContainer",
   "build": {
-    "dockerfile": "../Dockerfile",
-    "context": "."
+    "dockerfile": "./../Dockerfile",
+    "context": "./.."
   },
   "appPort": [
     "80:80"
   ],
   "forwardPorts": [
     9501
-  ],
-  "settings": {
-    "terminal.integrated.defaultProfile.linux": "bash",
-    "php.validate.executablePath": "/usr/local/bin/php",
-    "editor.formatOnSave": true
-  },
-  "extensions": [
-    "felixfbecker.php-debug",
-    "bmewburn.vscode-intelephense-client",
-    "ms-azuretools.vscode-docker"
-  ],
-  "postCreateCommand": "composer install || true",
-  "remoteUser": "root"
+  ]
 }
