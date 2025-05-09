@@ -1,7 +1,7 @@
 {
   "name": "Nginx + PHP-FPM + Swoole DevContainer",
   "build": {
-    "dockerfile": "Dockerfile",
+    "dockerfile": "../Dockerfile",
     "context": "."
   },
   "appPort": [
