@@ -1,13 +1,11 @@
 {
-  "name": "Swoole DevContainer",
-  "build": {
-    "dockerfile": "./../Dockerfile",
-    "context": "./.."
-  },
-  "appPort": [
-    "80:80"
-  ],
-  "forwardPorts": [
-    9501
-  ]
+	"name": "PHP",
+
+	"image": "mcr.microsoft.com/devcontainers/php:1-8.3",
+"portsAttributes": {
+		"8000": {
+			"label": "Hello Remote World",
+			"onAutoForward": "notify"
+		}
+	}
 }
