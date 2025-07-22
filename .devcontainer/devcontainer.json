@@ -1,5 +1,5 @@
 {
-  "name": "Nginx + PHP-FPM + Swoole DevContainer",
+  "name": "Swoole DevContainer",
   "build": {
     "dockerfile": "./../Dockerfile",
     "context": "./.."
