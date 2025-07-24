@@ -1,11 +1,7 @@
 {
-	"name": "PHP",
-
-	"image": "mcr.microsoft.com/devcontainers/php:1-8.3",
-"portsAttributes": {
-		"8000": {
-			"label": "Hello Remote World",
-			"onAutoForward": "notify"
-		}
-	}
+    "build": {
+        "context": "..",
+        "dockerfile": "./Dockerfile"
+    },
+    "forwardPorts": [9501]
 }
